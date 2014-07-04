@@ -1,0 +1,97 @@
+config BCMDHD_FXN_195_89
+	tristate "Broadcom 4329/30 wireless cards support"
+	depends on MMC
+	---help---
+	  This module adds support for wireless adapters based on
+	  Broadcom 4329/30 chipset.
+
+	  This driver uses the kernel's wireless extensions subsystem.
+
+	  If you choose to build a module, it'll be called dhd. Say M if
+	  unsure.
+
+config BCMDHD_FXN_FW_PATH
+	depends on BCMDHD_FXN_195_89
+	string "Firmware path"
+	default "/system/vendor/firmware/bcm4330/fw_bcmdhd.bin"
+	---help---
+	  Path to the firmware file.
+
+config BCMDHD_FXN_NVRAM_PATH
+	depends on BCMDHD_FXN_195_89
+	string "NVRAM path"
+	default "/system/etc/nvram_4330.txt"
+	---help---
+	  Path to the calibration file.
+
+config BCMDHD_WEXT
+	bool "Enable WEXT support"
+	depends on BCMDHD && CFG80211 = n
+	select WIRELESS_EXT
+	select WEXT_PRIV
+	default n
+	help
+	  Enables WEXT support
+
+config DHD_USE_SCHED_SCAN
+	bool "Use CFG80211 sched scan"
+	depends on BCMDHD && CFG80211
+	default n
+	---help---
+	Use CFG80211 sched scan
+
+config DHD_ENABLE_P2P
+	bool "Enable Wifi Direct"
+	depends on BCMDHD_FXN_195_89 && CFG80211
+	default y
+	---help---
+	Use Enable Wifi Direct
+
+config BCMDHD_CFG80211
+	bool "Enable CFG80211 support"
+	depends on BCMDHD_FXN_195_89 && CFG80211
+	default y
+	help
+	  Enables CFG80211 support
+
+config BCMDHD_NOAPI
+	bool "No wireless API"
+	help
+	  No wireless API is needed
+
+config BCMDHD_WIFI_CONTROL_FUNC
+	bool "Use bcmdhd_wlan device"
+	depends on BCMDHD_FXN_195_89
+	default y
+	---help---
+	  Use this option to get various parameters from architecture specific
+	  bcmdhd_wlan platform device. Say n if unsure.
+
+config BCMDHD_HW_OOB
+	bool "Use out of band interrupt"
+	depends on BCMDHD_FXN_195_89
+	default y
+	default n
+	---help---
+	  Use out of band interrupt for card interrupt and wake on wireless.
+
+config BCMDHD_CSCAN_ENABLE
+	bool "Enable Combo Scan"
+	depends on BCMDHD_FXN_195_89
+	default y
+	---help---
+	Enable Combo Scan
+
+config BCMDHD_INSMOD_NO_FW_LOAD
+	bool "Enable delayed firmware load"
+	depends on BCMDHD_FXN_195_89
+	default n
+	---help---
+	Enable delayes firmware
+
+config BCMDHD_CUSTOM_REGULATORY_DOMAIN
+	bool "Enable Custom Regulatory Domain"
+	depends on BCMDHD_FXN_195_89
+	default y
+	---help---
+	Use Custom Regulatory Domain set by driver.
