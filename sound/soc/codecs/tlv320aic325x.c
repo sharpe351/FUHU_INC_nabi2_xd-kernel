@@ -2014,11 +2014,11 @@ static int aic325x_mute(struct snd_soc_dai *dai, int mute)
 	msleep(1); 
 	dev_info(codec->dev, "Function: %s, mute = %d\n", __func__, mute);
 //&*&*&*CT1_130314: disable speaker when DAMP set mute as true
-	if(mute == 1)
+/*	if(mute == 1)
 	{
 		if(getSpkStatus())
 			setSpkStatus(codec, 0);
-	}
+	}*/
 //&*&*&*CT2_130314: disable speaker when DAMP set mute as true
 	
 #if 0
