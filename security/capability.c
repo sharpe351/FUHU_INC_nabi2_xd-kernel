@@ -22,7 +22,7 @@ static int cap_binder_transaction(struct task_struct *from, struct task_struct *
 	return 0;
 }
 
-static int cap_binder_transfer_binder(struct task_struct *from, struct task_struct *to, struct task_struct *owner)
+static int cap_binder_transfer_binder(struct task_struct *from, struct task_struct *to)
 {
 	return 0;
 }
@@ -1093,4 +1093,3 @@ void __init security_fixup_ops(struct security_operations *ops)
 	set_to_cap_if_null(ops, audit_rule_free);
 #endif
 }
-
